@@ -44,3 +44,4 @@
         });
 
         showStep(currentStep);
+        
