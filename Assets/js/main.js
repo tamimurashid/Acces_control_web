@@ -11,3 +11,36 @@
           ? '<i class="fas fa-angle-right"></i>' 
           : '<i class="fas fa-angle-left"></i>';
       });
+
+      // form js 
+
+        const steps = document.querySelectorAll('.step');
+        const nextBtns = document.querySelectorAll('.next-btn');
+        const prevBtns = document.querySelectorAll('.prev-btn');
+        let currentStep = 0;
+
+        function showStep(index) {
+            steps.forEach((step, idx) => {
+                step.classList.toggle('d-none', idx !== index);
+            });
+        }
+
+        nextBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (currentStep < steps.length - 1) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        prevBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        showStep(currentStep);

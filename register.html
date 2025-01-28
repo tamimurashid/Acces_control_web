@@ -126,8 +126,11 @@
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
                         </div>
-                        <button type="button" class="btn btn-secondary w-100 prev-btn">Previous</button>
-                        <button type="button" class="btn btn-primary w-100 next-btn mt-2">Next</button>
+                        <div class="d-flex justify-content-between">
+                             <button type="button" class="btn btn-secondary w-50
+                             prev-btn mt-2 mx-2">Previous</button>
+                             <button type="button" class="btn btn-primary w-50 next-btn mt-2">Next</button>
+                        </div>
                     </div>
 
                     <!-- Step 3: Position and Card -->
@@ -141,48 +144,17 @@
                             <label for="cardId" class="form-label">Card ID</label>
                             <input type="text" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
                         </div>
-                        <button type="button" class="btn btn-secondary w-100 prev-btn">Previous</button>
-                        <button type="submit" class="btn btn-success w-100 mt-2">Submit</button>
+                        <div class="d-flex justify-content-between">
+                             <button type="button" class="btn btn-secondary w-50
+                             prev-btn mt-2 mx-2">Previous</button>
+                             <button type="button" class="btn btn-primary w-50 next-btn mt-2">Submit</button>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<!-- JavaScript for Multi-Step Navigation -->
-    <script>
-        const steps = document.querySelectorAll('.step');
-        const nextBtns = document.querySelectorAll('.next-btn');
-        const prevBtns = document.querySelectorAll('.prev-btn');
-        let currentStep = 0;
-
-        function showStep(index) {
-            steps.forEach((step, idx) => {
-                step.classList.toggle('d-none', idx !== index);
-            });
-        }
-
-        nextBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (currentStep < steps.length - 1) {
-                    currentStep++;
-                    showStep(currentStep);
-                }
-            });
-        });
-
-        prevBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (currentStep > 0) {
-                    currentStep--;
-                    showStep(currentStep);
-                }
-            });
-        });
-
-        showStep(currentStep);
-    </script>
 
     <!-- JavaScript -->
     <script src="Assets/js/main.js"></script>
