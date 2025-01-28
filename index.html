@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="Assets/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css" />
+    
 
 
     <title>Access Control</title>
@@ -50,7 +52,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
-            <i class="fas fa-tags"></i> Delete
+            <i class="fas fa-tags"></i> Accounting
           </a>
         </li>
         <li class="nav-item">
@@ -129,7 +131,7 @@
               <div class="card-body">
                 <div class="icon">
                   <span class="material-symbols-outlined">
-                    card_membership
+                    toggle_on
                   </span>
                 </div>
                 <h4 class="text-center mt-3">
@@ -156,13 +158,22 @@
             </div>
           </div>
 
-        </div>
+
     </div>
 
 
     <!-- JavaScript -->
     <script src="Assets/js/main.js"></script>
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+      var DataTable = require( 'datatables.net' );
+        require( 'datatables.net-responsive' );
+        
+        let table = new DataTable('#myTable', {
+            responsive: true
+        });
+    </script>
   </body>
 </html>
