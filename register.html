@@ -141,7 +141,7 @@
                             <input type="text" class="form-control" id="position" placeholder="Enter your position (e.g., Manager)" required>
                         </div>
                         <button class="btn btn-primary my-3" id="scan">Scan Card</button>
-                        <div class="mb-3 d-none">
+                        <div class="mb-3 ms-3 d-none" id="thecard">
                             <label for="cardId" class="form-label">Card ID</label>
                             <input type="text" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
                         </div>
@@ -158,6 +158,13 @@
 </div>
 
     <!-- JavaScript -->
+     <script>
+      const scan = document.getElementById('scan');
+      const thecard = document.getElementById('thecard');
+      scan.addEventListener('click',  function(){
+        thecard.classList.remove('d-none');
+      });
+     </script>
     <script src="Assets/js/main.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
     <!-- Bootstrap JS -->
