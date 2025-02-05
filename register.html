@@ -34,6 +34,15 @@
           font-size: 60px; /* Make the icon large */
           color: rgb(12, 96, 250);
         }
+        @keyframes blink {
+          0% { color: rgba(0, 0, 0, 0.5); } /* Visible */
+          50% { color: transparent; }       /* Hidden */
+          100% { color: rgba(0, 0, 0, 0.5); } /* Visible */
+        }
+
+        #cardId::placeholder {
+          animation: blink 1s infinite;
+        }
     </style>
   </head>
   <body>
@@ -85,13 +94,13 @@
    <div class="main-content" id="mainContent">
     <h2 class="text-end">Access Control System</h2>
     <!-- Card for Multi-Step Form -->
-    <div class="card col-12 mx-auto mt-2" style="height: 700px;">
+    <div class="card col-12  mx-auto mt-2" style="height: 700px;">
         <div class="card-header text-center">
             <h5>User Registration</h5>
         </div>
         <div class="card-body d-flex justify-content-center align-items-center">
             <!-- Glassmorphic Form -->
-            <div class="form-container col-10 col-md-6 col-lg-4 p-4 rounded-4">
+            <div class="form-container col-10  col-sm-12 col-md-6 col-lg-4 p-4 rounded-4">
                 <form id="registrationForm">
                     <!-- Step 1: Personal Information -->
                     <div class="step step-1">
