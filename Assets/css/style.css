@@ -1,4 +1,13 @@
   /* Sidebar styling */
+   @import url("https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css");
+  body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('/Assets/Images/73.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+         }
+       
   .sidebar {
         position: fixed;
         top: 0;
@@ -10,6 +19,7 @@
         overflow-y: auto;
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease;
+        opacity: 0.8;
       }
       .sidebar-hidden {
         transform: translateX(-100%);
