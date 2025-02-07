@@ -17,6 +17,23 @@
 
     <title>Access Control</title>
     <style>
+      body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Style the welcome message */
+      #welcomeMessage {
+          width: 80%;
+          max-width: 500px;
+          padding: 20px;
+          background: rgba(255, 255, 255, 0.9);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          border-radius: 10px;
+          animation: popUp 0.6s ease-out;
+        }
+        .step{
+          animation: popUp 0.6s ease-out;
+        }
       .material-symbols-outlined {
         font-variation-settings:
         'FILL' 0,
@@ -43,12 +60,12 @@
         #cardId::placeholder {
           animation: blink 1s infinite;
         }
-        #registrationForm {animation: fadeIn 5s;}
-        @keyframes fadeIn {
-          0% { opacity: 0;}
-          100% { opacity: 1;}
-        }
-        
+
+             /* Pop-up animation for the welcome message */
+        @keyframes popUp {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }      
     </style>
   </head>
   <body>
