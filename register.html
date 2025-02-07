@@ -152,6 +152,15 @@
                             <input type="text" class="form-control" id="position" placeholder="Enter your position (e.g., Manager)" required>
                         </div>
                         <button class="btn btn-primary my-3" id="scan">Scan Card</button>
+                        <div class="img-card d-none" id="scan-animation">
+                            <video class="img-fluid" style="height:auto; width: 100%;" 
+                                src="/Assets/Images/tap-to-pay.mp4" 
+                                autoplay 
+                                muted 
+                                loop 
+                                playsinline>
+                            </video>
+                        </div>
                         <div class="mb-3 ms-3 d-none" id="thecard">
                             <label for="cardId" class="form-label">Card ID</label>
                             <input type="text" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
@@ -171,10 +180,13 @@
     <!-- JavaScript -->
      <script>
       const scan = document.getElementById('scan');
+      const scan_animation = document.getElementById('scan-animation');
       const thecard = document.getElementById('thecard');
       scan.addEventListener('click',  function(){
         thecard.classList.remove('d-none');
+        scan_animation.classList.remove('d-none');
       });
+
      </script>
     <script src="Assets/js/main.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
