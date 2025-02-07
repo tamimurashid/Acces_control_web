@@ -43,6 +43,11 @@
         #cardId::placeholder {
           animation: blink 1s infinite;
         }
+        .step {animation: fadeIn 5s;}
+        @keyframes fadeIn {
+          0% { opacity: 0;}
+          100% { opacity: 1;}
+        }
         
     </style>
   </head>
@@ -152,18 +157,18 @@
                             <input type="text" class="form-control" id="position" placeholder="Enter your position (e.g., Manager)" required>
                         </div>
                         <button class="btn btn-primary my-3" id="scan">Scan Card</button>
+                        <div class="mb-3 ms-3 d-none" id="thecard">
+                            <label for="cardId" class="form-label">Card ID</label>
+                            <input type="text" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
+                        </div>
                         <div class="img-card d-none" id="scan-animation">
-                            <video class="img-fluid" style="height:auto; width: 100%;" 
+                            <video class="img-fluid" style="height:200px; width: 100%;" 
                                 src="/Assets/Images/tap-to-pay.mp4" 
                                 autoplay 
                                 muted 
                                 loop 
                                 playsinline>
                             </video>
-                        </div>
-                        <div class="mb-3 ms-3 d-none" id="thecard">
-                            <label for="cardId" class="form-label">Card ID</label>
-                            <input type="text" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
                         </div>
                         <div class="d-flex justify-content-between">
                              <button type="button" class="btn btn-secondary w-50
