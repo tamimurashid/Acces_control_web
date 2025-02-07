@@ -44,4 +44,8 @@
         });
 
         showStep(currentStep);
-        
+        document.getElementById("startRegistration").addEventListener("click", function() {
+        document.getElementById("welcomeMessage").classList.add("d-none"); // Hide welcome message
+        document.getElementById("registrationFormContainer").classList.remove("d-none"); // Show form
+        document.querySelector(".step-1").classList.remove("d-none"); // Show first step
+    });

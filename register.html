@@ -43,7 +43,7 @@
         #cardId::placeholder {
           animation: blink 1s infinite;
         }
-        .step {animation: fadeIn 5s;}
+        #registrationForm {animation: fadeIn 5s;}
         @keyframes fadeIn {
           0% { opacity: 0;}
           100% { opacity: 1;}
@@ -101,85 +101,96 @@
     <!-- <h2 class="text-end">Access Control System</h2> -->
     <!-- Card for Multi-Step Form -->
      <!-- <img class="img-fluid  img-size" src="/Assets/Images/dark-blue-stamped-background-with-white-diy-block-prints.jpg" alt=""> -->
-    <div class="card col-12  mx-auto mt-2" style="height: 700px;">
-        <div class="card-header text-center">
-            <h5>User Registration</h5>
+   <div class="card col-12 mx-auto mt-2" style="height: 700px;">
+    <div class="card-header text-center">
+        <h5>User Registration</h5>
+    </div>
+    <div class="card-body d-flex justify-content-center align-items-center position-relative">
+        <!-- Welcome Message Overlay -->
+        <div id="welcomeMessage" class="position-absolute text-center p-4 bg-light shadow rounded-4" 
+             style="width: 80%; max-width: 500px; padding: 20px;">
+            <img class="img-fluid mb-3" src="/Assets/Images/3071357.jpg" alt="" style="width: 100px; height: 100px;">
+            <h5>Welcome to the Register System</h5>
+            <p class="small">
+                By clicking Register, your device will switch to Register Mode, 
+                and authentication will be paused until registration is complete.
+            </p>
+            <button id="startRegistration" class="btn btn-primary mt-2">Register</button>
         </div>
-        <div class="card-body d-flex justify-content-center align-items-center">
-            <!-- Glassmorphic Form -->
-            <div class="form-container col-10  col-sm-12 col-md-6 col-lg-4 p-4 rounded-4">
-                <form id="registrationForm">
-                    <!-- Step 1: Personal Information -->
-                    <div class="step step-1">
-                        <h6 class="text-center mb-4">Step 1: Personal Information</h6>
-                        <div class="mb-3">
-                            <label for="firstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="secondName" class="form-label">Second Name</label>
-                            <input type="text" class="form-control" id="secondName" placeholder="Enter your second name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
-                        </div>
-                        <button type="button" class="btn btn-primary w-100 next-btn">Next</button>
-                    </div>
 
-                    <!-- Step 2: Contact Information -->
-                    <div class="step step-2 d-none">
-                        <h6 class="text-center mb-4">Step 2: Contact Information</h6>
-                        <div class="mb-3">
-                            <label for="age" class="form-label">Age</label>
-                            <input type="number" class="form-control" id="age" placeholder="Enter your age" min="1" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="email" placeholder=" eg 07xxxxxxx" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                             <button type="button" class="btn btn-secondary w-50
-                             prev-btn mt-2 mx-2">Previous</button>
-                             <button type="button" class="btn btn-primary w-50 next-btn mt-2">Next</button>
-                        </div>
+        <!-- Glassmorphic Form (Initially Hidden) -->
+        <div id="registrationFormContainer" class="form-container col-10 col-sm-12 col-md-6 col-lg-4 p-4 rounded-4 d-none">
+            <form id="registrationForm">
+                <!-- Step 1: Personal Information -->
+                <div class="step step-1 d-none">
+                    <h6 class="text-center mb-4">Step 1: Personal Information</h6>
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="secondName" class="form-label">Second Name</label>
+                        <input type="text" class="form-control" id="secondName" placeholder="Enter your second name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100 next-btn">Next</button>
+                </div>
 
-                    <!-- Step 3: Position and Card -->
-                    <div class="step step-3 d-none">
-                        <h6 class="text-center mb-4">Step 3: Position and Card ID</h6>
-                        <div class="mb-3">
-                            <label for="position" class="form-label">Position</label>
-                            <input type="text" class="form-control" id="position" placeholder="Enter your position (e.g., Manager)" required>
-                        </div>
-                        <button class="btn btn-primary my-3" id="scan">Scan Card</button>
-                        <div class="mb-3 ms-3 d-none" id="thecard">
-                            <label for="cardId" class="form-label">Card ID</label>
-                            <input type="text" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
-                        </div>
-                        <div class="img-card d-none" id="scan-animation">
-                            <video class="img-fluid" style="height:200px; width: 100%;" 
-                                src="/Assets/Images/tap-to-pay.mp4" 
-                                autoplay 
-                                muted 
-                                loop 
-                                playsinline>
-                            </video>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                             <button type="button" class="btn btn-secondary w-50
-                             prev-btn mt-2 mx-2">Previous</button>
-                             <button type="button" class="btn btn-primary w-50 next-btn mt-2">Submit</button>
-                        </div>
+                <!-- Step 2: Contact Information -->
+                <div class="step step-2 d-none">
+                    <h6 class="text-center mb-4">Step 2: Contact Information</h6>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" class="form-control" id="age" placeholder="Enter your age" min="1" required>
                     </div>
-                </form>
-            </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="phone" placeholder="eg 07xxxxxxx" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary w-50 prev-btn mt-2 mx-2">Previous</button>
+                        <button type="button" class="btn btn-primary w-50 next-btn mt-2">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Position and Card -->
+                <div class="step step-3 d-none">
+                    <h6 class="text-center mb-4">Step 3: Position and Card ID</h6>
+                    <div class="mb-3">
+                        <label for="position" class="form-label">Position</label>
+                        <input type="text" class="form-control" id="position" placeholder="Enter your position (e.g., Manager)" required>
+                    </div>
+                    <button class="btn btn-primary my-3" id="scan">Scan Card</button>
+                    <div class="mb-3 ms-3 d-none" id="thecard">
+                        <label for="cardId" class="form-label">Card ID</label>
+                        <input type="text" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
+                    </div>
+                    <div class="img-card d-none" id="scan-animation">
+                        <video class="img-fluid" style="height:200px; width: 100%;" 
+                            src="/Assets/Images/tap-to-pay.mp4" 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline>
+                        </video>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary w-50 prev-btn mt-2 mx-2">Previous</button>
+                        <button type="button" class="btn btn-primary w-50 next-btn mt-2">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
 </div>
 
     <!-- JavaScript -->
