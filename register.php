@@ -69,12 +69,12 @@
     <nav class="sidebar" id="sidebar">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.php">
             <i class="fas fa-tachometer-alt"></i> Dashboard
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="register.html">
+          <a class="nav-link active" href="register.php">
             <i class="fas fa-box"></i> Register
           </a>
         </li>
@@ -203,13 +203,7 @@
 
     <!-- JavaScript -->
      <script>
-      const scan = document.getElementById('scan');
-      const scan_animation = document.getElementById('scan-animation');
-      const thecard = document.getElementById('thecard');
-      scan.addEventListener('click',  function(){
-        thecard.classList.remove('d-none');
-        scan_animation.classList.remove('d-none');
-      });
+      
 
      </script>
     <script src="Assets/js/main.js"></script>

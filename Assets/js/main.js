@@ -49,3 +49,12 @@
         document.getElementById("registrationFormContainer").classList.remove("d-none"); // Show form
         document.querySelector(".step-1").classList.remove("d-none"); // Show first step
     });
+
+    const scan = document.getElementById('scan');
+      const scan_animation = document.getElementById('scan-animation');
+      const thecard = document.getElementById('thecard');
+      scan.addEventListener('click',  function(){
+        event.preventDefault();
+        thecard.classList.remove('d-none');
+        scan_animation.classList.remove('d-none');
+      });

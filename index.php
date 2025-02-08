@@ -46,7 +46,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="register.html">
+          <a class="nav-link" href="register.php">
             <i class="fas fa-box"></i> Register
           </a>
         </li>
