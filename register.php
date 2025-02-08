@@ -128,21 +128,21 @@
 
         <!-- Glassmorphic Form (Initially Hidden) -->
         <div id="registrationFormContainer" class="form-container col-10 col-sm-12 col-md-6 col-lg-4 p-4 rounded-4 d-none">
-            <form id="registrationForm">
+            <form id="registrationForm" action="server/controller/register_cont.php">
                 <!-- Step 1: Personal Information -->
                 <div class="step step-1 d-none">
                     <h6 class="text-center mb-4">Step 1: Personal Information</h6>
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+                        <input type="text" name="firstname" class="form-control" id="firstName" placeholder="Enter your first name" required>
                     </div>
                     <div class="mb-3">
                         <label for="secondName" class="form-label">Second Name</label>
-                        <input type="text" class="form-control" id="secondName" placeholder="Enter your second name" required>
+                        <input type="text" name="secondname" class="form-control" id="secondName" placeholder="Enter your second name" required>
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                        <input type="text" name="lastname" class="form-control" id="lastName" placeholder="Enter your last name" required>
                     </div>
                     <button type="button" class="btn btn-primary w-100 next-btn">Next</button>
                 </div>
@@ -152,15 +152,15 @@
                     <h6 class="text-center mb-4">Step 2: Contact Information</h6>
                     <div class="mb-3">
                         <label for="age" class="form-label">Age</label>
-                        <input type="number" class="form-control" id="age" placeholder="Enter your age" min="1" required>
+                        <input type="number" name="age" class="form-control" id="age" placeholder="Enter your age" min="1" required>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="phone" placeholder="eg 07xxxxxxx" required>
+                        <input type="text" name="number" class="form-control" id="phone" placeholder="eg 07xxxxxxx" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email address" required>
                     </div>
                     <div class="d-flex justify-content-between">
                         <button type="button" class="btn btn-secondary w-50 prev-btn mt-2 mx-2">Previous</button>
@@ -173,7 +173,12 @@
                     <h6 class="text-center mb-4">Step 3: Position and Card ID</h6>
                     <div class="mb-3">
                         <label for="position" class="form-label">Position</label>
-                        <input type="text" class="form-control" id="position" placeholder="Enter your position (e.g., Manager)" required>
+                        <select name="position" class="form-select" id="position">
+                          <option selected>Choose position</option>
+                          <option value="staff">Staff</option>
+                          <option value="intern">Internet</option>
+                          <option value="field">Field</option>
+                        </select>
                     </div>
                     <button class="btn btn-primary my-3" id="scan">Scan Card</button>
                     <div class="mb-3 ms-3 d-none" id="thecard">
