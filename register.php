@@ -141,7 +141,7 @@
                         <input type="text" name="secondname" class="form-control" id="secondName" placeholder="Enter your second name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="lastName" class="form-label">Last 2 Name</label>
+                        <label for="lastName" class="form-label">Last  Name</label>
                         <input type="text" name="lastname" class="form-control" id="lastName" placeholder="Enter your last name" required>
                     </div>
                     <button type="button" class="btn btn-primary w-100 next-btn">Next</button>
