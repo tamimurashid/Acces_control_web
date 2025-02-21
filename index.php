@@ -84,7 +84,7 @@
    </div> -->
     <div class="main-content" id="mainContent">
       <div class="logo">
-        <img class="img-fluid" src="/Assets/Images/smartfy png@300x.png" alt="">
+        <img class="img-fluid" src="Assets/Images/logo.png" alt="">
       </div>
       <!-- Header Section -->
       <div class="card col-12 mx-auto" style="height: 700px;opacity: 0.8">

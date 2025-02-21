@@ -107,7 +107,7 @@
     </button>
    <div class="main-content" id="mainContent">
       <div class="logo">
-        <img class="img-fluid" src="/Assets/Images/logo.png" alt="">
+        <img class="img-fluid" src="Assets/Images/logo.png" alt="">
       </div>
    <div class="card col-12 mx-auto " style="height: 700px;opacity: 0.8">
     <div class="card-header">
@@ -117,7 +117,7 @@
         <!-- Welcome Message Overlay -->
         <div id="welcomeMessage" class="position-absolute text-center p-4 bg-light shadow rounded-4" 
              style="width: 80%; max-width: 500px; padding: 20px;">
-            <img class="img-fluid mb-3" src="/Assets/Images/3071357.jpg" alt="" style="width: 100%; height:400px;">
+            <img class="img-fluid mb-3" src="Assets/Images/3071357.jpg" alt="" style="width: 100%; height:400px;">
             <h5>Welcome to the Register System</h5>
             <p class="small">
                 By clicking scan id button in last step, your device will switch to Register Mode, 
@@ -146,7 +146,7 @@
                     </div>
                     <button type="button" class="btn btn-primary w-100 next-btn">Next</button>
                 </div>
-
+                
                 <!-- Step 2: Contact Information -->
                 <div class="step step-2 d-none">
                     <h6 class="text-center mb-4">Step 2: Contact Information</h6>
@@ -187,7 +187,7 @@
                     </div>
                     <div class="img-card d-none" id="scan-animation">
                         <video class="img-fluid" style="height:200px; width: 100%;" 
-                            src="/Assets/Images/tap-to-pay.mp4" 
+                            src="Assets/Images/tap-to-pay.mp4" 
                             autoplay 
                             muted 
                             loop 
