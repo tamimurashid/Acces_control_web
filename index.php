@@ -42,7 +42,7 @@
       <ul class="nav flex-column">
         <li class="nav-item">
           <a class="nav-link active" href="#">
-            <i class="fas fa-tachometer-alt"></i> Dashboard 2
+            <i class="fas fa-tachometer-alt"></i> Dashboard 
           </a>
         </li>
         <li class="nav-item">
