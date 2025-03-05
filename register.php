@@ -156,7 +156,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="text" name="number" class="form-control" id="phone" placeholder="eg 07xxxxxxx" required>
+                        <input type="text" name="phone" class="form-control" id="phone" placeholder="eg 07xxxxxxx" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
