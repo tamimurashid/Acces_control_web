@@ -128,7 +128,7 @@
 
         <!-- Glassmorphic Form (Initially Hidden) -->
         <div id="registrationFormContainer" class="form-container col-10 col-sm-12 col-md-6 col-lg-4 p-4 rounded-4 d-none">
-            <form id="registrationForm" action="server/controller/register_cont.php">
+            <form id="registrationForm" method="post" action="server/controller/register_cont.php">
                 <!-- Step 1: Personal Information -->
                 <div class="step step-1 d-none">
                     <h6 class="text-center mb-4">Step 1: Personal Information</h6>
@@ -196,7 +196,8 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <button type="button" class="btn btn-secondary w-50 prev-btn mt-2 mx-2">Previous</button>
-                        <button type="button" class="btn btn-primary w-50 next-btn mt-2">Submit</button>
+                        <!-- <button type="submit"  name="'submit" class="btn btn-primary w-50 next-btn mt-2">Submit</button> -->
+                        <input type="submit"  name="submit" class="btn btn-primary w-50 next-btn mt-2" value="Submit">
                     </div>
                 </div>
             </form>
