@@ -1,6 +1,6 @@
 <?php
-
 include"../server/db.php";
+session_start();
 // Get the raw POST data
 $rawData = file_get_contents("php://input");
 
@@ -9,6 +9,8 @@ $data = json_decode($rawData, true);
 
 if (isset($data['cardID'])) {
     $cardID = $conn->real_escape_string($data['cardID']);
+
+    $_SESSION['scanned_id'] = $cardID;// it store the scanned id into session and store it .
 
     // Query to check if the card ID exists in the database
     $query = "SELECT id FROM cards WHERE card_id = '$cardID' LIMIT 1";

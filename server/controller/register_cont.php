@@ -1,15 +1,6 @@
 <?php
 require  "../db.php";
-
-// $servername = "localhost";
-// $username = "root";       
-// $password = "root";           
-// $dbname = "rfid_database"; 
-
-// Create connection
-
-// $conn = mysqli_connect($servername, $username, $password, $dbname);
-
+// require "../../Api/index.php";
 
 session_start();
 error_reporting(E_ALL);

@@ -1,3 +1,8 @@
+<?php 
+session_start();
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -183,7 +188,7 @@
                     <button class="btn btn-primary my-3" id="scan">Scan Card</button>
                     <div class="mb-3 ms-3 d-none" id="thecard">
                         <label for="cardId" class="form-label">Card ID</label>
-                        <input type="text" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
+                        <input type="text" value="<?php echo isset($_SESSION['scanned_card_id']) ? $_SESSION['scanned_card_id'] : ''; ?>"; class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
                     </div>
                     <div class="img-card d-none" id="scan-animation">
                         <video class="img-fluid" style="height:200px; width: 100%;" 
