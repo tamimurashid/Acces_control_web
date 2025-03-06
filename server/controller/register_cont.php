@@ -1,5 +1,16 @@
 <?php
-include "../db.php";
+require  "../db.php";
+
+// $servername = "localhost";
+// $username = "root";       
+// $password = "root";           
+// $dbname = "rfid_database"; 
+
+// Create connection
+
+// $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -35,9 +46,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         }
 
         if(!isset($_SESSION['error'])){
-            $query = "INSERT INTO user_details (firstname, secondname, lastname, phone, email, age, position, card_id) VALUES ('$firstname', '$secondname', '$lastname', '$phone', '$email', '$age', '$position', '$card_id')";
+            $query = "INSERT INTO user_deatils (firstname, secondname, lastname, phone, email, age, position, card_id) VALUES ('$firstname', '$secondname', '$lastname', '$phone', '$email', '$age', '$position', '$cardId')";
 
-            mysqli_query($conn, $query);
+            $run  = mysqli_query($conn, $query);
+            if($run){
+               $_SESSION['success'] = "Data inserted successfully ";
+               header("Location: .././register.php");
+               exit(); 
+            }else{
+                echo "data was unable to be inseterd .";
+
+            }
         }
 
 
