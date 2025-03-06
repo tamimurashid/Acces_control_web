@@ -1,5 +1,5 @@
 <?php
-include"../server/db.php";
+include"./server/db.php";
 session_start();
 // Get the raw POST data
 $rawData = file_get_contents("php://input");
