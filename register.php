@@ -185,7 +185,9 @@ session_start();
                           <option value="field">Field</option>
                         </select>
                     </div>
+
                     <button class="btn btn-primary my-3" id="scan">Scan Card</button>
+
                     <div class="mb-3 ms-3 d-none" id="thecard">
                         <label for="cardId" class="form-label">Card ID</label>
                         <input type="text" value="<?php echo isset($_SESSION['scanned_card_id']) ? $_SESSION['scanned_card_id'] : ''; ?>"; class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
@@ -222,12 +224,19 @@ session_start();
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-      var DataTable = require( 'datatables.net' );
-        require( 'datatables.net-responsive' );
-        
-        let table = new DataTable('#myTable', {
-            responsive: true
-        });
+      document.getElementById('scan').addEventListener('click', function(){
+        fetch("http://localhost:8888/Access_control/Api/index.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "applications/json"
+          },
+          body:JSON.stringify({code: "010"}) // this to change to register mode  
+
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error("Error:", error));
+      });
     </script>
   </body>
 </html>
