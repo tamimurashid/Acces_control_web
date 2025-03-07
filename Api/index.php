@@ -1,37 +1,66 @@
 <?php
-include"../server/db.php";
-header('Access-Control-Allow-Origin:*');
+header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-header('Acess-Control-Allow-Method: GET');
-header('Acess-Control-Allow-Headers: Content-Type, Acess-Control-Allow-Headers, Authorization, X-Request-With');
-session_start();
-// Get the raw POST data
-$rawData = file_get_contents("php://input");
+header('Access-Control-Allow-Method: POST, GET');
+header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Request-With');
 
-// Decode JSON data
+$rawData = file_get_contents("php://input");
 $data = json_decode($rawData, true);
 
+// Check if the request contains a cardID
 if (isset($data['cardID'])) {
-    $cardID = $conn->real_escape_string($data['cardID']);
+    $cardID = $data['cardID'];
 
-    $_SESSION['scanned_id'] = $cardID;// it store the scanned id into session and store it .
+    // Forward cardID to checkUser-cont.php
+    $url = "http://localhost:8888/Access_control/server/controller/checkUser_cont.php";
+    
+    $postData = json_encode(["cardID" => $cardID]);
 
-    // Query to check if the card ID exists in the database
-    $query = "SELECT id FROM cards WHERE card_id = '$cardID' LIMIT 1";
-    $result = $conn->query($query);
+    // Initialize cURL
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    
+    // Execute request and get response
+    $response = curl_exec($ch);
+    curl_close($ch);
 
-    if ($result && $result->num_rows > 0) {
-        // Card ID exists in the database
-        echo json_encode(["status" => "success", "code" => "001", "message" => "Card ID exists."]);
+    // Send the response back to the scanner
+    echo $response;
+
+} elseif (isset($data['code'])) {
+    // Handle mode switching for the scanner
+    $code = $data['code'];
+
+    if ($code == "010") {
+        // Registration mode
+        echo json_encode([
+            "status" => "reg_mod",
+            "code" => "010",
+            "message" => "Scanner switched to Registration Mode."
+        ]);
+    } elseif ($code == "009") {
+        // Authentication mode
+        echo json_encode([
+            "status" => "auth_mod",
+            "code" => "009",
+            "message" => "Scanner switched to Authentication Mode."
+        ]);
     } else {
-        // Card ID does not exist in the database
-        echo json_encode(["status" => "success", "code" => "000", "message" => "Card ID not found."]);
+        // Invalid mode code
+        echo json_encode([
+            "status" => "error",
+            "code" => "000",
+            "message" => "Invalid mode request."
+        ]);
     }
 } else {
-    // Invalid request
-    echo json_encode(["status" => "error", "code" => "000", "message" => "Invalid request: cardID not provided"]);
+    echo json_encode([
+        "status" => "error",
+        "code" => "000",
+        "message" => "Invalid request: cardID or mode code not provided"
+    ]);
 }
-
-// Close connection
-$conn->close();
 ?>
