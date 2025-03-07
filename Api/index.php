@@ -1,5 +1,9 @@
 <?php
-include"./server/db.php";
+include"../server/db.php";
+header('Access-Control-Allow-Origin:*');
+header('Content-Type: application/json');
+header('Acess-Control-Allow-Method: GET');
+header('Acess-Control-Allow-Headers: Content-Type, Acess-Control-Allow-Headers, Authorization, X-Request-With');
 session_start();
 // Get the raw POST data
 $rawData = file_get_contents("php://input");
@@ -25,7 +29,7 @@ if (isset($data['cardID'])) {
     }
 } else {
     // Invalid request
-    echo json_encode(["status" => "error", "message" => "Invalid request: cardID not provided"]);
+    echo json_encode(["status" => "error", "code" => "000", "message" => "Invalid request: cardID not provided"]);
 }
 
 // Close connection
