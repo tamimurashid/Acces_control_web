@@ -48,7 +48,7 @@ if (isset($data['cardID'])) {
             "code" => "009",
             "message" => "Scanner switched to Authentication Mode."
         ]);
-    } else {
+    }else {
         // Invalid mode code
         echo json_encode([
             "status" => "error",
@@ -56,7 +56,13 @@ if (isset($data['cardID'])) {
             "message" => "Invalid mode request."
         ]);
     }
-} else {
+}elseif (isset($data['code']) && $data['code'] == "check_mode") {
+        echo json_encode([
+            "status" => "auth_mod",  // Change this dynamically as needed
+            "code" => "009",
+            "message" => "Current mode: Authentication"
+        ]);
+ }else {
     echo json_encode([
         "status" => "error",
         "code" => "000",
