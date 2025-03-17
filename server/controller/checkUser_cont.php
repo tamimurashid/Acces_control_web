@@ -16,15 +16,15 @@ $_SESSION['scanned_card_id'] = $data;
 
 if (isset($data['check']) && $data['check'] === 'scanned_card') {
     // Query the database to get the mode
-    $result = $conn->query("SELECT mode FROM device_modes LIMIT 1");
+    $result = $conn->query("SELECT temp_id FROM device_modes LIMIT 1");
     
     if ($result) {
         $row = $result->fetch_assoc();
         // If mode exists in the database, return it; otherwise, return 'auth_mod' as a default
-        $mode = $row ? $row['mode'] : "auth_mod";
+        $temp_id =  $row['temp_id'];
     } else {
         // In case of any database query errors, return 'auth_mod'
-        $mode = "auth_mod";
+        $temp_id  = "";
     }
 
     // Respond with the mode in a JSON format
