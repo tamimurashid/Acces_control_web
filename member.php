@@ -93,7 +93,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="mb-0">Dashboard</h5>
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control me-2" type="search" id="customSearch" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
@@ -144,12 +144,17 @@
     <script>
         $(document).ready(function() {
             var table = $('#myTable').DataTable({
-                "dom": "lrtip" // This removes the default search bar
+                "dom": "lrtip" // Removes the default search box
             });
 
-            // Custom search input functionality
-            $("input[type='search']").on("keyup", function() {
+            // Live search when typing
+            $("#customSearch").on("keyup", function() {
                 table.search(this.value).draw();
+            });
+
+            // If you want to trigger search only when the button is clicked
+            $("#customSearchBtn").on("click", function() {
+                table.search($("#customSearch").val()).draw();
             });
         });
     </script>
