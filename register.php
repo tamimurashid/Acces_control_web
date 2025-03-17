@@ -190,7 +190,7 @@ session_start();
 
                     <div class="mb-3 ms-3 d-none" id="thecard">
                         <label for="cardId" class="form-label">Card ID</label>
-                        <input type="text" value="<?php echo isset($_SESSION['scanned_card_id']) ? $_SESSION['scanned_card_id'] : ''; ?>"; class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
+                        <input type="text" value="<?php echo isset($_SESSION['scanned_card_id']) ? $_SESSION['scanned_card_id'] : ''; ?>" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
                     </div>
                     <div class="img-card d-none" id="scan-animation">
                         <video class="img-fluid" style="height:200px; width: 100%;" 
@@ -224,19 +224,41 @@ session_start();
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-      document.getElementById('scan').addEventListener('click', function(){
+      document.getElementById('scan').addEventListener('click', function () {
         fetch("http://localhost:8888/Access_control/Api/index.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "applications/json"
-          },
-          body:JSON.stringify({code: "010"}) // this to change to register mode  
-
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ code: "010" }) // Switch ESP32 to register mode
         })
         .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error("Error:", error));
-      });
+        .then(data => {
+            console.log("Response from API:", data);
+            if (data.status === "success") {
+                alert("ESP32 is now in Register Mode. Please scan a card.");
+                
+                // Wait for the ESP to send the scanned card ID
+                setTimeout(fetchScannedCard, 5000); // Delay before fetching card ID
+            }
+        })
+        .catch(error => console.error("Error switching to Register Mode:", error));
+    });
+
+    function fetchScannedCard() {
+        fetch("http://localhost:8888/Access_control/Api/index.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ check: "scanned_card" }) // Request for scanned Card ID
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Scanned Card ID Response:", data);
+            if (data.status === "success" && data.cardID) {
+                document.getElementById("cardId").value = data.cardID; // Display scanned card ID
+                document.getElementById("thecard").classList.remove("d-none"); // Show the input field
+            }
+        })
+        .catch(error => console.error("Error fetching scanned Card ID:", error));
+    }
     </script>
   </body>
 </html>

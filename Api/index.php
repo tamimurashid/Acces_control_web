@@ -7,20 +7,43 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $rawData = file_get_contents("php://input");
 $data = json_decode($rawData, true);
 
-// Handle checking the current mode
-if (isset($data['code']) && $data['code'] == "check_mode") {
+if (!$data) {
+    echo json_encode(["status" => "error", "code" => "000", "message" => "Invalid JSON input"]);
+    exit;
+}
+
+// Mode management
+$modeStatus = "auth_mod"; // Default mode
+
+if (isset($data['code'])) {
+    if ($data['code'] == "check_mode") {
+        echo json_encode([
+            "status" => $modeStatus,
+            "code" => "009",
+            "message" => "Current mode: " . ucfirst(str_replace("_", " ", $modeStatus))
+        ]);
+        exit;
+    } elseif ($data['code'] == "010") {
+        $modeStatus = "reg_mod";
+    } elseif ($data['code'] == "009") {
+        $modeStatus = "auth_mod";
+    } else {
+        echo json_encode(["status" => "error", "code" => "000", "message" => "Invalid mode request"]);
+        exit;
+    }
+
     echo json_encode([
-        "status" => "auth_mod",  // Change dynamically if needed
-        "code" => "009",
-        "message" => "Current mode: Authentication"
+        "status" => $modeStatus,
+        "code" => $data['code'],
+        "message" => "Scanner switched to " . ucfirst(str_replace("_", " ", $modeStatus)) . " Mode"
     ]);
     exit;
 }
 
-// Handle card authentication
+// Card Authentication
 if (isset($data['cardID'])) {
     $cardID = $data['cardID'];
-    $mode = isset($data['mode']) ? $data['mode'] : "auth_mod"; // Default mode
+    $mode = isset($data['mode']) ? $data['mode'] : $modeStatus;
 
     $url = "http://localhost:8888/Access_control/server/controller/checkUser_cont.php";
     $postData = json_encode(["cardID" => $cardID, "mode" => $mode]);
@@ -33,20 +56,13 @@ if (isset($data['cardID'])) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
     
     $response = curl_exec($ch);
+    $curlError = curl_error($ch);
     curl_close($ch);
 
-    echo $response;
-    exit;
-}
-
-// Handle mode switching
-if (isset($data['code'])) {
-    if ($data['code'] == "010") {
-        echo json_encode(["status" => "reg_mod", "code" => "010", "message" => "Scanner switched to Registration Mode."]);
-    } elseif ($data['code'] == "009") {
-        echo json_encode(["status" => "auth_mod", "code" => "009", "message" => "Scanner switched to Authentication Mode."]);
+    if ($response === false) {
+        echo json_encode(["status" => "error", "code" => "500", "message" => "Failed to connect to authentication server", "error" => $curlError]);
     } else {
-        echo json_encode(["status" => "error", "code" => "000", "message" => "Invalid mode request."]);
+        echo $response;
     }
     exit;
 }
@@ -54,3 +70,4 @@ if (isset($data['code'])) {
 // Invalid request
 echo json_encode(["status" => "error", "code" => "000", "message" => "Invalid request: cardID or mode code not provided"]);
 ?>
+ 
