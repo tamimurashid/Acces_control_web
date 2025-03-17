@@ -116,7 +116,16 @@ session_start();
       </div>
    <div class="card col-12 mx-auto " style="height: 700px;opacity: 0.8">
     <div class="card-header">
-        <h5>User Registration</h5>
+        <h5>
+          <?php if(isset($_SESSION['success'])) { ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $_SESSION['success']; ?>
+            </div>
+          <?php 
+                // Unset the session variable after displaying the message
+                unset($_SESSION['success']);
+            }?>
+        </h5>
     </div>
     <div class="card-body d-flex justify-content-center align-items-center position-relative">
         <!-- Welcome Message Overlay -->

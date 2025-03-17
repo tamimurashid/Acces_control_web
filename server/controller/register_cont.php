@@ -41,8 +41,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
             $run  = mysqli_query($conn, $query);
             if($run){
-               $_SESSION['success'] = "Data inserted successfully ";
-               header("Location: .././register.php");
+               $_SESSION['success'] = "New member has been registered, to return the system to authentication mode click here  ";
+               header("Location: http://localhost:8888/Access_control/register.php");
                exit(); 
             }else{
                 echo "data was unable to be inseterd .";
