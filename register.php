@@ -190,7 +190,7 @@ session_start();
 
                     <div class="mb-3 ms-3 d-none" id="thecard">
                         <label for="cardId" class="form-label">Card ID</label>
-                        <input type="text" value="<?php echo isset($_SESSION['scanned_card_id']) ? $_SESSION['scanned_card_id'] : ''; ?>" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
+                        <input type="text" value="" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
                     </div>
                     <div class="img-card d-none" id="scan-animation">
                         <video class="img-fluid" style="height:200px; width: 100%;" 
@@ -244,7 +244,7 @@ session_start();
     });
 
     function fetchScannedCard() {
-        fetch("http://localhost:8888/Access_control/Api/index.php", {
+        fetch("http://localhost:8888/Access_control/server/controller/checkUser_cont.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ check: "scanned_card" }) // Request for scanned Card ID
