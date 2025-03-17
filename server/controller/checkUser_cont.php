@@ -39,7 +39,7 @@ if (isset($data['cardID']) && isset($data['mode'])) {
 
     if ($mode === "auth_mod") {
         // Check if the card ID exists in the database
-        $query = "SELECT id FROM cards WHERE card_id = '$cardID' LIMIT 1";
+        $query = "SELECT id FROM user_deatils WHERE card_id = '$cardID' LIMIT 1";
         $result = $conn->query($query);
 
         if ($result && $result->num_rows > 0) {
