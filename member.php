@@ -3,11 +3,6 @@ require "server/db.php";
 $query = "SELECT * FROM user_deatils";
 
 $result = mysqli_query($conn,$query);
-if($result){
-    $row = $result->fetch_assoc();
-    
-}
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -102,7 +97,7 @@ if($result){
       <!-- Header Section -->
       <div class="card col-12 mx-auto" style="height: 700px;opacity: 0.8">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h5 class="mb-0">Dashboard</h5>
+          <h5 class="mb-0">Members</h5>
           <form class="d-flex">
             <input class="form-control me-2" type="search" id="customSearch" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
@@ -113,20 +108,33 @@ if($result){
         <table id="myTable" class="display">
             <thead>
                 <tr>
-                    <th>Column 1</th>
-                    <th>Column 2</th>
-                    <th>Column 3</th>
+                    <th>Id</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>Position</th>
+                    <th>Age</th>
+                    <th>Card id </th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
+                <?php while($row =mysqli_fetch_assoc($result)){ ?>
                 <tr>
-                    <td>Row 1 Data 1</td>
-                    <td>Row 1 Data 2</td>
+                    <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['firstname']; ?></td>
+                    <td><?php echo $row['lastname']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['phone']; ?></td>
+                    <td><?php echo $row['position']; ?></td>
+                    <td><?php echo $row['age']; ?></td>
+                    <td><?php echo $row['card_id']; ?></td>
+                    <td>
+                        <button class="btn btn-danger delete-btn" data-id="<?php echo $row['id']; ?>">Delete</button>
+                    </td>
                 </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                </tr>
+                <?php } ?>
             </tbody>
         </table>
         </div>
