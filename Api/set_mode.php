@@ -1,6 +1,14 @@
 <?php
 session_start();
-require "../db.php";
+// Database credentials
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "rfid_database";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
@@ -24,4 +32,4 @@ if (isset($data['mode'])) {
 } else {
     echo json_encode(["status" => "error", "message" => "Mode not provided"]);
 }
-?>
+

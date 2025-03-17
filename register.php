@@ -225,10 +225,10 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
       document.getElementById('scan').addEventListener('click', function () {
-        fetch("http://localhost:8888/Access_control/Api/index.php", {
+        fetch("http://localhost:8888/Access_control/Api/set_mode.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ code: "010" }) // Switch ESP32 to register mode
+            body: JSON.stringify({ mode: "reg_mod" }) // Switch ESP32 to register mode
         })
         .then(response => response.json())
         .then(data => {

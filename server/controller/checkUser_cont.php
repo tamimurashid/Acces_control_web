@@ -11,12 +11,12 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // Get the raw POST data
 $rawData = file_get_contents("php://input");
 $data = json_decode($rawData, true);
-
+$_SESSION['scanned_card_id'] = $data;
 // Check if cardID and mode are provided in the request
 if (isset($data['cardID']) && isset($data['mode'])) {
     $cardID = $conn->real_escape_string($data['cardID']);
     $mode  = $conn->real_escape_string($data['mode']);
-    $_SESSION['scanned_card_id'] = $cardID;
+    // $_SESSION['scanned_card_id'] = $cardID;
 
     // Check if the mode is "auth_mode"
     if ($mode == "auth_mod") {
@@ -32,7 +32,19 @@ if (isset($data['cardID']) && isset($data['mode'])) {
             // Card ID does not exist in the database
             echo json_encode(["status" => "error", "code" => "000", "message" => "Card ID not found."]);
         }
-    } else {
+        
+    } elseif ($mode == "reg_mod"){
+        $stmt = $conn->prepare("UPDATE device_modes SET temp_id = ?");
+        $stmt->bind_param("s", $cardID);
+        if ($stmt->execute()) {
+            echo json_encode(["status" => "success", "message" => "temp_id updated successfully"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Database update failed"]);
+        }
+        $stmt->close();
+
+        }
+    else {
         // If the mode is not "auth_mode", return an error message
         echo json_encode(["status" => "error", "code" => "002", "message" => "Invalid mode. Expected 'auth_mod'."]);
     }
