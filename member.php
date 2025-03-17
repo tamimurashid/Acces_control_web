@@ -1,3 +1,14 @@
+<?php
+require "server/db.php";
+$query = "SELECT * FROM user_deatils";
+
+$result = mysqli_query($conn,$query);
+if($result){
+    $row = $result->fetch_assoc();
+    
+}
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -43,7 +54,7 @@
     <nav class="sidebar" id="sidebar">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="index.php">
+          <a class="nav-link " href="index.php">
             <i class="fas fa-tachometer-alt"></i> Dashboard 
           </a>
         </li>
@@ -58,7 +69,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link active" href="#">
             <i class="fas fa-users"></i> Member
           </a>
         </li>
@@ -104,6 +115,7 @@
                 <tr>
                     <th>Column 1</th>
                     <th>Column 2</th>
+                    <th>Column 3</th>
                 </tr>
             </thead>
             <tbody>
