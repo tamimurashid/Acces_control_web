@@ -13,6 +13,27 @@ $rawData = file_get_contents("php://input");
 $data = json_decode($rawData, true);
 $_SESSION['scanned_card_id'] = $data;
 // Check if cardID and mode are provided in the request
+
+if (isset($data['check']) && $data['check'] === 'scanned_card') {
+    // Query the database to get the mode
+    $result = $conn->query("SELECT mode FROM device_modes LIMIT 1");
+    
+    if ($result) {
+        $row = $result->fetch_assoc();
+        // If mode exists in the database, return it; otherwise, return 'auth_mod' as a default
+        $mode = $row ? $row['mode'] : "auth_mod";
+    } else {
+        // In case of any database query errors, return 'auth_mod'
+        $mode = "auth_mod";
+    }
+
+    // Respond with the mode in a JSON format
+    echo json_encode(["status" => $mode]);
+} else {
+    // In case 'code' is not 'check_mode', return an error response
+    echo json_encode(["status" => "error", "message" => "Invalid code"]);
+}
+
 if (isset($data['cardID']) && isset($data['mode'])) {
     $cardID = $conn->real_escape_string($data['cardID']);
     $mode  = $conn->real_escape_string($data['mode']);
