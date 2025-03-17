@@ -22,17 +22,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         if($firstname && !preg_match($userpatterns, trim($firstname))){
             $_SESSION['error'] = "first name should contain only letters.";
-            header("Location: ../register.php");
+            header("Location: http://localhost:8888/Access_control/register.php?firstname_error=" . urlencode($_SESSION['error']));
             exit();
         } else if($secondname &&  !preg_match($userpatterns, trim($secondname))){
             $_SESSION['error'] = "Second  name  should contain only letters.";
-            header("Location: ../register.php");
+            header("Location: http://localhost:8888/Access_control/register.php");
             exit();
         }
 
         else if($lastname &&  !preg_match($userpatterns, trim($lastname))){
             $_SESSION['error'] = "Last name  should contain only letters.";
-            header("Location: ../register.php");
+            header("Location: http://localhost:8888/Access_control/register.php");
             exit();
         }
 

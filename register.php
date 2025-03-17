@@ -117,14 +117,20 @@ session_start();
    <div class="card col-12 mx-auto " style="height: 700px;opacity: 0.8">
     <div class="card-header">
         <h5>
-          <?php if(isset($_SESSION['success'])) { ?>
-            <div class="alert alert-success" role="alert">
-                <?php echo $_SESSION['success']; ?>
-                <button class="btn btn-primary btn-sm" onclick="setMode()">Return to Authentication Mode</button>
-            </div>
-          <?php 
+            <?php if(isset($_SESSION['success'])) { ?>
+              <div class="alert alert-success" role="alert">
+                  <?php echo $_SESSION['success']; ?>
+                  <button class="btn btn-primary btn-sm" onclick="setMode()">Return to Authentication Mode</button>
+              </div>
+            <?php if(isset($_SESSION['error'])){?>
+              <div class="alert alert-danger" role="alert">
+                <?php echo $_SESSION['error']; ?>
+                  <button class="btn btn-primary btn-sm" onclick="setMode()">Return to Authentication Mode</button>
+              </div>
+            <?php }
                 // Unset the session variable after displaying the message
                 unset($_SESSION['success']);
+                unset($_SESSION['error']);
             }?>
         </h5>
     </div>
