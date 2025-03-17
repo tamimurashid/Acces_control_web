@@ -43,7 +43,7 @@
     <nav class="sidebar" id="sidebar">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="#">
+          <a class="nav-link active" href="index.php">
             <i class="fas fa-tachometer-alt"></i> Dashboard 
           </a>
         </li>
@@ -58,7 +58,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="member.php">
+          <a class="nav-link" href="#">
             <i class="fas fa-users"></i> Member
           </a>
         </li>
@@ -97,102 +97,29 @@
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
-        <div class="card-body row mb-0">
-          <div class="col-md-3 col-6 col-sm-12 col-lg-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="icon">
-                  <span class="material-symbols-outlined">
-                    person
-                  </span>
-                </div>
-                <h4 class="text-center mt-3">
-                   Total Member
-                </h4>
-                 <h5 class="text-center">13</h5>
-              </div>
-            </div>
-          </div>
-
-         <div class="col-md-3 col-6 col-sm-12 col-lg-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="icon">
-                  <span class="material-symbols-outlined">
-                    group
-                  </span>
-                </div>
-                <h4 class="text-center mt-3">
-                    Staff
-                </h4>
-                 <h5 class="text-center">13</h5>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 col-6 col-sm-12 col-lg-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="icon">
-                  <span class="material-symbols-outlined">
-                    location_away
-                  </span>
-                </div>
-                <h4 class="text-center mt-3">
-                   Field Student
-                </h4>
-                 <h5 class="text-center">13</h5>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 col-6 col-sm-12 col-lg-3">
-            <div class="card">
-              <div class="card-body">
-                <div class="icon">
-                  <span class="material-symbols-outlined">
-                   location_away
-                  </span>
-                </div>
-                <h4 class="text-center mt-3">
-                   Intern
-                </h4>
-                 <h5 class="text-center">13</h5>
-              </div>
-            </div>
-          </div>
-    </div>
-    <div class="row card-body mt-0">
-      <div class="col-md-6 col-12">
-            <div class="card shadow-lg rounded-lg border-0">
-                <div class="card-body text-center">
-                    <!-- Status Icon -->
-                    <div class="status-icon mb-3">
-                        <span class="material-symbols-outlined text-success" style="font-size: 40px;">
-                            power_settings_new
-                        </span>
-                    </div>
-                    
-                    <!-- Device Mode -->
-                    <h4 class="fw-bold text-primary">
-                        <span class="material-symbols-outlined align-middle me-2">
-                            settings_accessibility
-                        </span>
-                        Device Mode: <span id="deviceMode">Authentication</span>
-                    </h4>
-
-                    <!-- Device Status -->
-                    <h5 class="text-secondary mt-2">
-                        <span class="material-symbols-outlined align-middle me-2 text-danger">
-                            toggle_on
-                        </span>
-                        Status: <span id="deviceStatus">Active</span>
-                    </h5>
-                </div>
-            </div>
+      
+        <div class="row mt-5">
+        <table id="myTable" class="display">
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+                <tr>
+                    <td>Row 2 Data 1</td>
+                    <td>Row 2 Data 2</td>
+                </tr>
+            </tbody>
+        </table>
         </div>
-    </div>
-   
+
+
     <!-- JavaScript -->
     <script src="Assets/js/main.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
@@ -215,9 +142,16 @@
              
     </script>
     <script>
-         $(document).ready(function() {
-        $('#myTable').DataTable();
-      });
+        $(document).ready(function() {
+            var table = $('#myTable').DataTable({
+                "dom": "lrtip" // This removes the default search bar
+            });
+
+            // Custom search input functionality
+            $("input[type='search']").on("keyup", function() {
+                table.search(this.value).draw();
+            });
+        });
     </script>
   </body>
 </html>
