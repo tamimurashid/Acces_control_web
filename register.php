@@ -118,7 +118,7 @@ session_start();
     <div class="card-header">
         <h5>
             <?php if(isset($_SESSION['success'])) { ?>
-              <div class="alert alert-success" role="alert">
+              <div class="alert alert-success text-center" role="alert">
                   <?php echo $_SESSION['success']; ?>
                   <button class="btn btn-primary btn-sm float-end" onclick="setMode()">Change Mode</button>
               </div><?php 
@@ -127,7 +127,7 @@ session_start();
                 unset($_SESSION['success']);
             }?>
              <?php if(isset($_SESSION['error'])){?>
-              <div class="alert alert-danger" role="alert">
+              <div class="alert alert-danger text-center" role="alert">
                 <?php echo $_SESSION['error']; ?>
                   <button class="btn btn-danger btn-sm float-end" onclick="setMode()">Change Mode</button>
               </div>

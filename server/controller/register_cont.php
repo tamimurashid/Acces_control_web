@@ -6,6 +6,8 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $userpatterns = '/^[A-Za-z]+(?:\s[A-Za-z]+)*$/';
+$phonePattern = '/^(06|07)[0-9]{8}$/'; // Regex for phone number validation
+$emailPattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'; // Standard email validation
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(isset($_POST['submit'])){
         $firstname = isset($_POST['firstname']) ? mysqli_real_escape_string($conn, $_POST['firstname']) : null; 
@@ -32,6 +34,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
         else if($lastname &&  !preg_match($userpatterns, trim($lastname))){
             $_SESSION['error'] = "Last name  should contain only letters.";
+            header("Location: http://localhost:8888/Access_control/register.php");
+            exit();
+        }
+
+          // Validation for phone number
+        if (!preg_match($phonePattern, $phone)) {
+            $_SESSION['error'] = "Invalid phone number. It must start with '06' or '07' and have exactly 10 digits.";
             header("Location: http://localhost:8888/Access_control/register.php");
             exit();
         }
