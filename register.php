@@ -190,7 +190,7 @@ session_start();
 
                     <div class="mb-3 ms-3 d-none" id="thecard">
                         <label for="cardId" class="form-label">Card ID</label>
-                        <input type="text" value="" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
+                        <input type="text" name="cardId" value="" class="form-control" id="cardId" placeholder="Scan your card to capture ID" readonly>
                     </div>
                     <div class="img-card d-none" id="scan-animation">
                         <video class="img-fluid" style="height:200px; width: 100%;" 
