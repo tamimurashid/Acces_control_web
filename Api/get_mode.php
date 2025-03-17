@@ -1,10 +1,11 @@
 <?php
 session_start();
+require "../db.php";
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-// Retrieve mode from session or database
-$mode = isset($_SESSION['device_mode']) ? $_SESSION['device_mode'] : "auth_mod";
+$result = $conn->query("SELECT mode FROM device_modes LIMIT 1");
+$row = $result->fetch_assoc();
 
-echo json_encode(["status" => $mode]);
+echo json_encode(["status" => $row ? $row['mode'] : "auth_mod"]);
 ?>
