@@ -121,17 +121,18 @@ session_start();
               <div class="alert alert-success" role="alert">
                   <?php echo $_SESSION['success']; ?>
                   <button class="btn btn-primary btn-sm" onclick="setMode()">Return to Authentication Mode</button>
-              </div>
-            <?php if(isset($_SESSION['error'])){?>
+              </div><?php 
+           
+                // Unset the session variable after displaying the message
+                unset($_SESSION['success']);
+            }?>
+             <?php if(isset($_SESSION['error'])){?>
               <div class="alert alert-danger" role="alert">
                 <?php echo $_SESSION['error']; ?>
                   <button class="btn btn-primary btn-sm" onclick="setMode()">Return to Authentication Mode</button>
               </div>
             <?php }
-                // Unset the session variable after displaying the message
-                unset($_SESSION['success']);
-                unset($_SESSION['error']);
-            }?>
+            unset($_SESSION['error']); ?>
         </h5>
     </div>
     <div class="card-body d-flex justify-content-center align-items-center position-relative">
