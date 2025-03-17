@@ -120,6 +120,7 @@ session_start();
           <?php if(isset($_SESSION['success'])) { ?>
             <div class="alert alert-success" role="alert">
                 <?php echo $_SESSION['success']; ?>
+                <button class="btn btn-primary btn-sm" onclick="setMode()">Return to Authentication Mode</button>
             </div>
           <?php 
                 // Unset the session variable after displaying the message
@@ -268,6 +269,24 @@ session_start();
         })
         .catch(error => console.error("Error fetching scanned Card ID:", error));
     }
+    function setMode() {
+            fetch("http://localhost:8888/Access_control/Api/set_mode.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ mode: "auth_mod" }) // Send mode update request
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Mode Update Response:", data);
+                if (data.status === "success") {
+                    alert("System returned to authentication mode.");
+                    location.reload(); // Reload the page after setting the mode
+                } else {
+                    alert("Failed to set mode. Try again.");
+                }
+            })
+            .catch(error => console.error("Error setting mode:", error));
+        }
     </script>
   </body>
 </html>
