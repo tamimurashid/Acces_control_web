@@ -120,7 +120,7 @@ session_start();
             <?php if(isset($_SESSION['success'])) { ?>
               <div class="alert alert-success" role="alert">
                   <?php echo $_SESSION['success']; ?>
-                  <button class="btn btn-primary btn-sm" onclick="setMode()">Return to Authentication Mode</button>
+                  <button class="btn btn-primary btn-sm float-end" onclick="setMode()">Change Mode</button>
               </div><?php 
            
                 // Unset the session variable after displaying the message
@@ -129,7 +129,7 @@ session_start();
              <?php if(isset($_SESSION['error'])){?>
               <div class="alert alert-danger" role="alert">
                 <?php echo $_SESSION['error']; ?>
-                  <button class="btn btn-primary btn-sm" onclick="setMode()">Return to Authentication Mode</button>
+                  <button class="btn btn-danger btn-sm float-end" onclick="setMode()">Change Mode</button>
               </div>
             <?php }
             unset($_SESSION['error']); ?>
@@ -198,7 +198,7 @@ session_start();
                         <select name="position" class="form-select" id="position">
                           <option selected>Choose position</option>
                           <option value="staff">Staff</option>
-                          <option value="intern">Internet</option>
+                          <option value="intern">Intern</option>
                           <option value="field">Field</option>
                         </select>
                     </div>
@@ -251,7 +251,7 @@ session_start();
         .then(data => {
             console.log("Response from API:", data);
             if (data.status === "success") {
-                alert("ESP32 is now in Register Mode. Please scan a card.");
+                alert("The device is now in Register Mode. Press okay and scan the card, do not submit untill you see card id on the input .");
                 
                 // Wait for the ESP to send the scanned card ID
                 setTimeout(fetchScannedCard, 5000); // Delay before fetching card ID
