@@ -45,6 +45,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             exit();
         }
 
+         // Validation for email format
+        if (!preg_match($emailPattern, $email)) {
+            $_SESSION['error'] = "Invalid email format. Please enter a valid email address.";
+            header("Location: http://localhost:8888/Access_control/register.php");
+            exit();
+        }
+
+
         if(!isset($_SESSION['error'])){
             $query = "INSERT INTO user_deatils (firstname, secondname, lastname, phone, email, age, position, card_id) VALUES ('$firstname', '$secondname', '$lastname', '$phone', '$email', '$age', '$position', '$cardId')";
 
