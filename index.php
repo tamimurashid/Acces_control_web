@@ -158,8 +158,55 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row">
+
+    <!-- Access Logs Table -->
+        <div class="card col-md-6 col-6 col-sm-12 col-lg-6 mt-0">
+            <div class="card-header">Recent Access Logs</div>
+            <div class="card-body">
+                <table id="accessLogsTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>John Doe</td><td>Staff</td><td>10:15 AM</td><td><span class="badge bg-success">Granted</span></td></tr>
+                        <tr><td>Jane Smith</td><td>Intern</td><td>10:30 AM</td><td><span class="badge bg-danger">Denied</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+      <div class="col-md-6 col-6 col-sm-12 col-lg-6">
+        <div class="card mt-4">
+            <div class="card-header">Access Statistics</div>
+            <div class="card-body">
+                <canvas id="accessChart"></canvas>
+            </div>
+        </div>
+      </div>
+       <div class="col-md-6 col-6 col-sm-12 col-lg-6">
+        <div class="card rounded shadow-sm p-2">
+          <div class="card-body d-flex align-items-center">
+            <div class="icon bg-danger text-white d-flex justify-content-center align-items-center rounded-circle me-3" style="width: 40px; height: 40px;">
+              <span class="material-symbols-outlined">location_away</span>
+            </div>
+            <div>
+              <h6 class="mb-1">Intern</h6>
+              <h5 class="fw-bold mb-0">13</h5>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
+
 
   
    
@@ -177,6 +224,7 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
       var DataTable = require( 'datatables.net' );
@@ -188,6 +236,20 @@
          $(document).ready(function() {
         $('#myTable').DataTable();
       });
+
+      // Chart.js Access Graph
+        var ctx = document.getElementById('accessChart').getContext('2d');
+        var accessChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                datasets: [{
+                    label: 'Access Attempts',
+                    data: [12, 19, 5, 10, 7],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                }]
+            }
+        });
     </script>
   </body>
 </html>
