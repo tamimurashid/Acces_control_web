@@ -36,6 +36,10 @@
           font-size: 30px; /* Make the icon large */
           color: black;
         }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+        .icon { display: flex; justify-content: center; align-items: center; width: 50px; height: 50px; }
+        .card { border-radius: 10px; }
+        .chart-container { height: 400px; }
     </style>
   </head>
   <body>
@@ -192,7 +196,7 @@
 
     <div class="row">
       <div class="col-md-6 col-6 col-sm-12 col-lg-6">
-        <div class="card mt-4">
+        <div class="card m-3">
             <div class="card-header">Access Statistics</div>
             <div class="card-body">
                 <canvas id="accessChart"></canvas>
@@ -201,7 +205,7 @@
       </div>
 
       <!-- Access Logs Table -->
-        <div class="card col-md-6 col-6 col-sm-12 col-lg-6 mt-0">
+        <div class="card col-md-6 col-6 col-sm-12 col-lg-6 ">
             <div class="card-header">Recent Access Logs</div>
             <div class="card-body">
                 <table id="accessLogsTable" class="table table-striped">
@@ -252,19 +256,18 @@
         $('#myTable').DataTable();
       });
 
-      // Chart.js Access Graph
-        var ctx = document.getElementById('accessChart').getContext('2d');
-        var accessChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                datasets: [{
-                    label: 'Access Attempts',
-                    data: [12, 19, 5, 10, 7],
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
-                }]
-            }
-        });
+      var ctx = document.getElementById('accessChart').getContext('2d');
+      var accessChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          datasets: [
+            { label: 'Success', data: [12, 19, 5, 10, 7], backgroundColor: 'rgba(54, 162, 235, 0.7)' },
+            { label: 'Fail', data: [5, 8, 3, 6, 4], backgroundColor: 'rgba(255, 99, 132, 0.7)' }
+          ]
+        },
+        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+      });
     </script>
   </body>
 </html>
