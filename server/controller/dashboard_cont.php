@@ -2,9 +2,11 @@
 session_start();
 require "../db.php";
 
-function Usernumber(){
-    $query = "SELECT * FROM user_deatils WHERE  position  ";
-}
+
+    $query = "SELECT COUNT(*) AS total_members  FROM user_deatils ";
+
+    $result  = mysqli_query($conn, $result);
+
 
 
 

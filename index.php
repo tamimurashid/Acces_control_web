@@ -105,7 +105,7 @@
   
       <!-- Total Members -->
       <div class="col-md-3 col-6 col-sm-12 col-lg-3">
-        <div class="card rounded shadow-sm p-2">
+        <div class="card p-3 rounded shadow-md">
           <div class="card-body d-flex align-items-center">
             <div class="icon bg-primary text-white d-flex justify-content-center align-items-center rounded-circle me-3" style="width: 40px; height: 40px;">
               <span class="material-symbols-outlined">person</span>
@@ -120,7 +120,7 @@
 
       <!-- Staff -->
       <div class="col-md-3 col-6 col-sm-12 col-lg-3">
-        <div class="card rounded shadow-sm p-2">
+        <div class="card p-3 rounded shadow-md">
           <div class="card-body d-flex align-items-center">
             <div class="icon bg-success text-white d-flex justify-content-center align-items-center rounded-circle me-3" style="width: 40px; height: 40px;">
               <span class="material-symbols-outlined">group</span>
@@ -135,7 +135,7 @@
 
       <!-- Field Student -->
       <div class="col-md-3 col-6 col-sm-12 col-lg-3">
-        <div class="card rounded shadow-sm p-2">
+        <div class="card p-3 rounded shadow-md">
           <div class="card-body d-flex align-items-center">
             <div class="icon bg-warning text-white d-flex justify-content-center align-items-center rounded-circle me-3" style="width: 40px; height: 40px;">
               <span class="material-symbols-outlined">location_away</span>
@@ -150,7 +150,7 @@
 
       <!-- Intern -->
       <div class="col-md-3 col-6 col-sm-12 col-lg-3">
-        <div class="card rounded shadow-sm p-2">
+        <div class="card p-3 rounded shadow-md">
           <div class="card-body d-flex align-items-center">
             <div class="icon bg-danger text-white d-flex justify-content-center align-items-center rounded-circle me-3" style="width: 40px; height: 40px;">
               <span class="material-symbols-outlined">location_away</span>
@@ -167,7 +167,7 @@
     <div class="row">
     <!-- Device Mode Status -->
         <div class="col-md-3">
-            <div class="card p-3 text-center">
+            <div class="card p-3 text-center shadow-md">
                 <h5>Device Mode</h5>
                 <h4 id="deviceMode" class="text-primary">Register</h4>
             </div>
@@ -175,19 +175,19 @@
         
         <!-- System Status -->
         <div class="col-md-3">
-            <div class="card p-3 text-center">
+            <div class="card p-3 text-center shadow-md">
                 <h5>System Status</h5>
                 <h4 id="systemStatus" class="text-success">Online</h4>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card p-3 text-center">
+            <div class="card p-3 text-center shadow-md">
                 <h5>Success Attempts</h5>
                 <h4 id="systemStatus" class="text-success">13</h4>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card p-3 text-center">
+            <div class="card p-3 text-center shadow-md">
                 <h5>Failed Attempts</h5>
                 <h4 id="systemStatus" class="text-success">13</h4>
             </div>
@@ -196,7 +196,7 @@
 
     <div class="row">
       <div class="col-md-6 col-6 col-sm-12 col-lg-6">
-        <div class="card m-3">
+        <div class="card m-3 shadow-md">
             <div class="card-header">Access Statistics</div>
             <div class="card-body">
                 <canvas id="accessChart"></canvas>
@@ -205,7 +205,7 @@
       </div>
 
       <!-- Access Logs Table -->
-        <div class="card col-md-6 col-6 col-sm-12 col-lg-6 ">
+        <div class="card shadow-md col-md-6 col-6 col-sm-12 col-lg-6 ">
             <div class="card-header">Recent Access Logs</div>
             <div class="card-body">
                 <table id="accessLogsTable" class="table table-striped">
