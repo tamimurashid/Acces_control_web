@@ -1,6 +1,6 @@
 <?php
 require "server/db.php";
-$query = "SELECT * FROM user_deatils";
+$query = "SELECT * FROM logs";
 
 $result = mysqli_query($conn,$query);
 ?>
@@ -59,17 +59,12 @@ $result = mysqli_query($conn,$query);
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fas fa-tags"></i> Accounting
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#">
+          <a class="nav-link" href="member.php">
             <i class="fas fa-users"></i> Member
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="log.php">
+          <a class="nav-link active" href="#">
             <i class="fas fa-chart-line"></i> Logs
           </a>
         </li>
@@ -97,7 +92,7 @@ $result = mysqli_query($conn,$query);
       <!-- Header Section -->
       <div class="card col-12 mx-auto" style="height: 700px;opacity: 0.8">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h5 class="mb-0">Members</h5>
+          <h5 class="mb-0">Logs</h5>
           <form class="d-flex">
             <input class="form-control me-2" type="search" id="customSearch" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
@@ -109,27 +104,21 @@ $result = mysqli_query($conn,$query);
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>Phone number</th>
-                    <th>Position</th>
-                    <th>Age</th>
-                    <th>Card id </th>
-                    <th>Delete</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Code</th>
+                    <th>Message</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while($row =mysqli_fetch_assoc($result)){ ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['firstname']; ?></td>
-                    <td><?php echo $row['lastname']; ?></td>
-                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['time ']; ?></td>
+                    <td><?php echo $row['status']; ?></td>
+                    <td><?php echo $row['code ']; ?></td>
                     <td><?php echo $row['phone']; ?></td>
-                    <td><?php echo $row['position']; ?></td>
-                    <td><?php echo $row['age']; ?></td>
-                    <td><?php echo $row['card_id']; ?></td>
+                    <td><?php echo $row['message']; ?></td>
                     <td>
                         <button class="btn btn-danger delete-btn" data-id="<?php echo $row['id']; ?>">Delete</button>
                     </td>

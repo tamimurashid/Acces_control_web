@@ -108,7 +108,7 @@ if($device_mode == 'reg_mod'){
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="log.php">
             <i class="fas fa-chart-line"></i> Logs
           </a>
         </li>

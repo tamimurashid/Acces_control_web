@@ -33,8 +33,10 @@ if (isset($data['check']) && $data['check'] === 'scanned_card') {
 
     if ($result && $row = $result->fetch_assoc()) {
         $cardID = $row['temp_id'] ?? "";
+        logEvent($conn, "success", "100", "Card ID fetched successfully: $cardID");
         echo json_encode(["status" => "success", "cardID" => $cardID]);
     } else {
+        logEvent($conn, "error", "101", "Failed to fetch scanned card ID");
         echo json_encode(["status" => "error", "message" => "Failed to fetch scanned card ID"]);
     }
     exit;
@@ -53,8 +55,10 @@ if (isset($data['cardID']) && isset($data['mode'])) {
         $result = $conn->query($query);
 
         if ($result && $result->num_rows > 0) {
+            logEvent($conn, "success", "001", "Card ID $cardID authenticated successfully.");
             echo json_encode(["status" => "success", "code" => "001", "message" => "Card ID exists."]);
         } else {
+            logEvent($conn, "error", "000", "Card ID $cardID not found.");
             echo json_encode(["status" => "error", "code" => "000", "message" => "Card ID not found."]);
         }
     } elseif ($mode === "reg_mod") {
@@ -62,15 +66,19 @@ if (isset($data['cardID']) && isset($data['mode'])) {
         $stmt = $conn->prepare("UPDATE device_modes SET temp_id = ?");
         $stmt->bind_param("s", $cardID);
         if ($stmt->execute()) {
+            logEvent($conn, "success", "002", "Card ID $cardID registered to temp_id.");
             echo json_encode(["status" => "success", "message" => "temp_id updated successfully"]);
         } else {
+            logEvent($conn, "error", "003", "Failed to update temp_id with Card ID $cardID.");
             echo json_encode(["status" => "error", "message" => "Database update failed"]);
         }
         $stmt->close();
     } else {
+        logEvent($conn, "error", "004", "Invalid mode: $mode");
         echo json_encode(["status" => "error", "code" => "002", "message" => "Invalid mode. Expected 'auth_mod' or 'reg_mod'."]);
     }
 } else {
+    logEvent($conn, "error", "005", "Missing cardID or mode in request.");
     echo json_encode(["status" => "error", "code" => "003", "message" => "Missing cardID or mode in the request."]);
 }
 
