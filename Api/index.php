@@ -39,6 +39,10 @@ if (isset($data['code'])) {
     } elseif ($data['code'] == "009") {
         $modeStatus = "auth_mod";
     } else {
+        $status = "Error ";
+        $code = "000";
+        $message = "Invalid mode request";
+        logEvent($conn,$status, $code, $message);
         echo json_encode(["status" => "error", "code" => "000", "message" => "Invalid mode request"]);
         exit;
     }
@@ -71,6 +75,10 @@ if (isset($data['cardID'])) {
     curl_close($ch);
 
     if ($response === false) {
+        $status = "Error";
+        $code = "500";
+        $message = "Failed to connect to authentication server, 'error' => $curlError])";
+        logEvent($conn,$status, $code, $message);
         echo json_encode(["status" => "error", "code" => "500", "message" => "Failed to connect to authentication server", "error" => $curlError]);
     } else {
         echo $response;
@@ -79,6 +87,10 @@ if (isset($data['cardID'])) {
 }
 
 // Invalid request
+$status = "Error";
+$code ="000";
+$message = "nvalid request: cardID or mode code not provided";
+logEvent($conn,$status, $code, $message);
 echo json_encode(["status" => "error", "code" => "000", "message" => "Invalid request: cardID or mode code not provided"]);
 ?>
  
