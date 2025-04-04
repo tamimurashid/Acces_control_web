@@ -114,14 +114,10 @@ $result = mysqli_query($conn,$query);
                 <?php while($row =mysqli_fetch_assoc($result)){ ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['time ']; ?></td>
+                    <td><?php echo $row['time']; ?></td>
                     <td><?php echo $row['status']; ?></td>
-                    <td><?php echo $row['code ']; ?></td>
-                    <td><?php echo $row['phone']; ?></td>
+                    <td><?php echo $row['code']; ?></td>
                     <td><?php echo $row['message']; ?></td>
-                    <td>
-                        <button class="btn btn-danger delete-btn" data-id="<?php echo $row['id']; ?>">Delete</button>
-                    </td>
                 </tr>
                 <?php } ?>
             </tbody>

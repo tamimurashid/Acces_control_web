@@ -2,32 +2,31 @@
 session_start();
 require "../db.php";
 
-// Set the headers to allow cross-origin requests and proper JSON response
+// Set headers
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Request-With');
 
+// Logging function
 function logEvent($conn, $status, $code, $message){
-    $stmt = $conn->prepare("INSERT INTO log (status, code, message) VALUE (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO logs (status, code, message) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $status, $code, $message);
     $stmt->execute();
     $stmt->close();
 }
-// Get the raw POST data
+
+// Get JSON input
 $rawData = file_get_contents("php://input");
 $data = json_decode($rawData, true);
 
 if (!$data) {
-    $status = "Error";
-    $code = "";
-    $message = "Invalid JSON input";
-    logEvent($conn, $status, $code, $message);
+    logEvent($conn, "error", "000", "Invalid JSON input");
     echo json_encode(["status" => "error", "message" => "Invalid JSON input"]);
     exit;
 }
 
-// Handle request to fetch the scanned card ID
+// Check scanned card
 if (isset($data['check']) && $data['check'] === 'scanned_card') {
     $result = $conn->query("SELECT temp_id FROM device_modes LIMIT 1");
 
@@ -42,15 +41,13 @@ if (isset($data['check']) && $data['check'] === 'scanned_card') {
     exit;
 }
 
-// Handle authentication and registration mode
+// Auth or Reg mode
 if (isset($data['cardID']) && isset($data['mode'])) {
     $cardID = $conn->real_escape_string($data['cardID']);
     $mode = $conn->real_escape_string($data['mode']);
-
     $_SESSION['scanned_card_id'] = $cardID;
 
     if ($mode === "auth_mod") {
-        // Check if the card ID exists in the database
         $query = "SELECT id FROM user_deatils WHERE card_id = '$cardID' LIMIT 1";
         $result = $conn->query($query);
 
@@ -61,8 +58,8 @@ if (isset($data['cardID']) && isset($data['mode'])) {
             logEvent($conn, "error", "000", "Card ID $cardID not found.");
             echo json_encode(["status" => "error", "code" => "000", "message" => "Card ID not found."]);
         }
+
     } elseif ($mode === "reg_mod") {
-        // Update temp_id in device_modes
         $stmt = $conn->prepare("UPDATE device_modes SET temp_id = ?");
         $stmt->bind_param("s", $cardID);
         if ($stmt->execute()) {
@@ -82,6 +79,5 @@ if (isset($data['cardID']) && isset($data['mode'])) {
     echo json_encode(["status" => "error", "code" => "003", "message" => "Missing cardID or mode in the request."]);
 }
 
-// Close the database connection
 $conn->close();
 ?>

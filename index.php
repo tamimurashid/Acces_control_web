@@ -35,6 +35,15 @@ if($device_mode == 'reg_mod'){
 }else if($device_mode == 'auth_mod'){
   $device_mode = "Authentication";
 }
+$fail_query = "SELECT COUNT(*) AS fail FROM logs WHERE status = 'error'";
+$fail_result = mysqli_query($conn, $fail_query);
+$fail_row = mysqli_fetch_assoc($fail_result);
+$fail = $fail_row['fail'];
+
+$success_query = "SELECT COUNT(*) AS success FROM logs WHERE status = 'success'";
+$success_result = mysqli_query($conn, $success_query);
+$success_row = mysqli_fetch_assoc($success_result);
+$success = $success_row['success'];
 
 
 ?>
@@ -224,13 +233,13 @@ if($device_mode == 'reg_mod'){
         <div class="col-md-3 col-6 col-sm-12 col-lg-3">
             <div class="card p-3 text-center shadow-md">
                 <h5>Success Attempts</h5>
-                <h4 id="systemStatus" class="text-success">13</h4>
+                <h4 id="systemStatus" class="text-success"><?php echo $success ?></h4>
             </div>
         </div>
         <div class="col-md-3 col-6 col-sm-12 col-lg-3">
             <div class="card p-3 text-center shadow-md me-3">
                 <h5>Failed Attempts</h5>
-                <h4 id="systemStatus" class="text-success">13</h4>
+                <h4 id="systemStatus" class="text-success"><?php echo $fail ?></h4>
             </div>
         </div>
     </div>
