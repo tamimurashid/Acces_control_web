@@ -7,7 +7,18 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $rawData = file_get_contents("php://input");
 $data = json_decode($rawData, true);
 
+function logEvent($conn, $status, $code, $message){
+    $stmt = $conn->prepare("INSERT INTO log (status, code, message) VALUE (?, ?, ?)");
+    $stmt->bind_param("sss", $status, $code, $message);
+    $stmt->execute();
+    $stmt->close();
+}
+
 if (!$data) {
+    $status = "Error";
+    $code = "000";
+    $message = "Invalid JSON input";
+    logEvent($conn,$status, $code, $message);
     echo json_encode(["status" => "error", "code" => "000", "message" => "Invalid JSON input"]);
     exit;
 }

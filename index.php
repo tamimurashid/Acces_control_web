@@ -32,7 +32,7 @@ $device_row = mysqli_fetch_assoc($device_result);
 $device_mode = $device_row['mode'];
 if($device_mode == 'reg_mod'){
   $device_mode = "Registration";
-}else if($device_mode == 'Auth_mod'){
+}else if($device_mode == 'auth_mod'){
   $device_mode = "Authentication";
 }
 
