@@ -1,3 +1,33 @@
+<?php 
+session_start();
+require  "server/db.php";
+
+// Total members
+$total_query = "SELECT COUNT(*) AS total_members FROM user_deatils";
+$total_result = mysqli_query($conn, $total_query);
+$total_row = mysqli_fetch_assoc($total_result);
+$total_members = $total_row['total_members'];
+
+// Count Field Students
+$field_query = "SELECT COUNT(*) AS field_students FROM user_deatils WHERE position = 'field'";
+$field_result = mysqli_query($conn, $field_query);
+$field_row = mysqli_fetch_assoc($field_result);
+$field_students = $field_row['field_students'];
+
+// Count Interns
+$intern_query = "SELECT COUNT(*) AS interns FROM user_deatils WHERE position = 'intern'";
+$intern_result = mysqli_query($conn, $intern_query);
+$intern_row = mysqli_fetch_assoc($intern_result);
+$interns = $intern_row['interns'];
+
+// Count Staff
+$staff_query = "SELECT COUNT(*) AS staff FROM user_deatils WHERE position = 'staff'";
+$staff_result = mysqli_query($conn, $staff_query);
+$staff_row = mysqli_fetch_assoc($staff_result);
+$staff = $staff_row['staff'];
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -112,7 +142,7 @@
             </div>
             <div>
               <h6 class="mb-1">Total Members</h6>
-              <h5 class="fw-bold mb-0">13</h5>
+              <h5 class="fw-bold mb-0"><?php echo $total_members ?></h5>
             </div>
           </div>
         </div>
@@ -127,7 +157,7 @@
             </div>
             <div>
               <h6 class="mb-1">Staff</h6>
-              <h5 class="fw-bold mb-0">13</h5>
+              <h5 class="fw-bold mb-0"><?php echo $staff ?></h5>
             </div>
           </div>
         </div>
@@ -142,7 +172,7 @@
             </div>
             <div>
               <h6 class="mb-1">Field Student</h6>
-              <h5 class="fw-bold mb-0">13</h5>
+              <h5 class="fw-bold mb-0"><?php echo $field_students ?></h5>
             </div>
           </div>
         </div>
@@ -157,7 +187,7 @@
             </div>
             <div>
               <h6 class="mb-1">Intern</h6>
-              <h5 class="fw-bold mb-0">13</h5>
+              <h5 class="fw-bold mb-0"><?php echo $interns ?></h5>
             </div>
           </div>
         </div>
@@ -166,28 +196,28 @@
 
     <div class="row">
     <!-- Device Mode Status -->
-        <div class="col-md-3">
-            <div class="card p-3 text-center shadow-md">
+        <div class="col-md-3 col-6 col-sm-12 col-lg-3">
+            <div class="card p-3 text-center shadow-md ms-3">
                 <h5>Device Mode</h5>
                 <h4 id="deviceMode" class="text-primary">Register</h4>
             </div>
         </div>
         
         <!-- System Status -->
-        <div class="col-md-3">
+        <div class="col-md-3 col-6 col-sm-12 col-lg-3">
             <div class="card p-3 text-center shadow-md">
                 <h5>System Status</h5>
                 <h4 id="systemStatus" class="text-success">Online</h4>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6 col-sm-12 col-lg-3">
             <div class="card p-3 text-center shadow-md">
                 <h5>Success Attempts</h5>
                 <h4 id="systemStatus" class="text-success">13</h4>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card p-3 text-center shadow-md">
+        <div class="col-md-3 col-6 col-sm-12 col-lg-3">
+            <div class="card p-3 text-center shadow-md me-3">
                 <h5>Failed Attempts</h5>
                 <h4 id="systemStatus" class="text-success">13</h4>
             </div>
@@ -205,7 +235,7 @@
       </div>
 
       <!-- Access Logs Table -->
-        <div class="card shadow-md col-md-6 col-6 col-sm-12 col-lg-6 ">
+        <div class="card shadow-md mt-3 col-md-6 col-6 col-sm-12 col-lg-6 ">
             <div class="card-header">Recent Access Logs</div>
             <div class="card-body">
                 <table id="accessLogsTable" class="table table-striped">
