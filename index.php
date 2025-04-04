@@ -26,6 +26,17 @@ $staff_result = mysqli_query($conn, $staff_query);
 $staff_row = mysqli_fetch_assoc($staff_result);
 $staff = $staff_row['staff'];
 
+$device_query = "SELECT mode FROM device_modes";
+$device_result = mysqli_query($conn, $device_query);
+$device_row = mysqli_fetch_assoc($device_result);
+$device_mode = $device_row['mode'];
+if($device_mode == 'reg_mod'){
+  $device_mode = "Registration";
+}else if($device_mode == 'Auth_mod'){
+  $device_mode = "Authentication";
+}
+
+
 ?>
 
 <!doctype html>
@@ -199,7 +210,7 @@ $staff = $staff_row['staff'];
         <div class="col-md-3 col-6 col-sm-12 col-lg-3">
             <div class="card p-3 text-center shadow-md ms-3">
                 <h5>Device Mode</h5>
-                <h4 id="deviceMode" class="text-primary">Register</h4>
+                <h4 id="deviceMode" class="text-primary"><?php echo $device_mode ?></h4>
             </div>
         </div>
         
