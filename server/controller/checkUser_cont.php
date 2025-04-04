@@ -8,11 +8,21 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Request-With');
 
+function logEvent($conn, $status, $code, $message){
+    $stmt = $conn->prepare("INSERT INTO log (status, code, message) VALUE (?, ?, ?)");
+    $stmt->bind_param("sss", $status, $code, $message);
+    $stmt->execute();
+    $stmt->close();
+}
 // Get the raw POST data
 $rawData = file_get_contents("php://input");
 $data = json_decode($rawData, true);
 
 if (!$data) {
+    $status = "Error";
+    $code = "";
+    $message = "Invalid JSON input";
+    logEvent($conn, $status, $code, $message);
     echo json_encode(["status" => "error", "message" => "Invalid JSON input"]);
     exit;
 }
