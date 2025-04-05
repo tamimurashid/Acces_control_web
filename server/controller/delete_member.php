@@ -9,13 +9,19 @@ if(isset($_GET['id'])){
    
 
    if($stmt->execute()){
-        $_SESSION['success'] = "New member has been registered, to return the system to authentication mode click here  ";
-        header("Location: http://localhost:8888/Access_control/register.php");
+        $_SESSION['success'] = "The member has been deleted  successfully";
+        header("Location: http://localhost:8888/Access_control/member.php");
+        exit();
+   }else{
+        $_SESSION['error'] = "Error deleting member";
+        header("Location: http://localhost:8888/Access_control/member.php");
         exit();
    }
-
-
 }
+  $stmt->close();
+  else{
+    
+  }
 
 
 
