@@ -131,8 +131,14 @@ $result = mysqli_query($conn,$query);
                     <td><?php echo $row['age']; ?></td>
                     <td><?php echo $row['card_id']; ?></td>
                     <td>
-                        <button class="btn btn-danger delete-btn" data-id="<?php echo $row['id']; ?>">Delete</button>
-                    </td>
+                      <a 
+                          href="server/controller/delete_member.php?id=<?php echo $row['id']; ?>" 
+                          class="btn btn-danger" 
+                          onclick="return confirm('Are you sure you want to delete this member?');"
+                      >
+                          Delete
+                      </a>
+                  </td>
                 </tr>
                 <?php } ?>
             </tbody>

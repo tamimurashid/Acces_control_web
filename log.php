@@ -1,6 +1,6 @@
 <?php
 require "server/db.php";
-$query = "SELECT * FROM logs";
+$query = "SELECT * FROM logs ORDER BY time ASC";
 
 $result = mysqli_query($conn,$query);
 ?>
